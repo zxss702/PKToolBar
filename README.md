@@ -5,7 +5,7 @@ __使用swiftUI重新构建的苹果Pencilkit的工具栏__
 
 此工具栏是noteE中所附带的，使用苹果PKtool的工具栏的附属品
 
-基本上完整的复刻了所有的苹果PKtoolBar的功能，包括但不限于具备自动储存上次选择的工具，笔，铅笔，标记笔，选择笔，尺子橡皮，颜色选择，自定义颜色，可拖拽，宽度选择等功能
+基本上完整的复刻了所有的苹果PKtoolBar的功能，包括但不限于具备自动储存上次选择的工具，笔，铅笔，标记笔，选择笔，尺子橡皮，颜色选择，自定义颜色，可拖拽，宽度选择,双击切换等功能
 
 您可以在App Store上下载noteE体验此工具栏(https://apps.apple.com/us/app/notee/id1669201695）
 
@@ -16,22 +16,22 @@ __使用swiftUI重新构建的苹果Pencilkit的工具栏__
 将您本库中的所有文件下载到您的主程序中
 ```
 struct ToolView: View {
-    @StateObject var manage : rootvar
+    @StateObject var manage = PKToolPickerManage()
     
     var body: some View {
         PKCanvasView()
             .overlay {
                 PKToolPickerView()
             }
-            .environmentObject( manage)
+            .environmentObject(manage)
     }
 }
 ```
 ```
 struct PKCanvasView:UIViewrRepresentable {
-    @EnvironmentObject var manage:rootvar
+    @EnvironmentObject var manage:PKToolPickerManage
     
-    ...//你的 mackView
+    ...//你的 makeView
     
     func updateUIViewController(_ uiViewController: PKCanvasView, context: Context) {
         switch manage.PKToolSlect {
